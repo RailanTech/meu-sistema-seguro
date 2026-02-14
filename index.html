@@ -43,19 +43,24 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            font-size: 16px;
         }
         button:hover { background-color: #2ea043; }
         .icon { font-size: 50px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
+
     <div class="login-box">
         <div class="icon">🔒</div>
         <h2>Acesso Restrito</h2>
         <p>Sistema RailanTech</p>
+        
         <input type="email" placeholder="Usuário">
         <input type="password" placeholder="Senha">
-        <button>ENTRAR</button>
+        
+        <button onclick="alert('✅ ACESSO AUTORIZADO!\n\nBem-vindo ao Sistema, RailanTech.\nConexão Segura Ativada.')">ENTRAR</button>
     </div>
+
 </body>
 </html>
