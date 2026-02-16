@@ -3,28 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Seguro VIP</title>
+    <title>Sistema RailanTech V2</title>
     <style>
         body {
             background-color: #0d1117;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', monospace; /* Fonte estilo Hacker */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        .login-box {
+
+        /* TELA DE LOGIN (A Porta) */
+        #tela-login {
             background-color: #161b22;
             padding: 40px;
             border-radius: 10px;
             border: 1px solid #30363d;
             text-align: center;
             width: 300px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
+
+        /* TELA SECRETA (A Sala) - Começa invisível */
+        #tela-secreta {
+            display: none; /* ESCONDIDO */
+            background-color: #0d1117;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #238636;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #238636; /* Brilho verde */
+        }
+
         h2 { color: #238636; }
+        
         input {
             width: 90%;
             padding: 10px;
@@ -36,6 +53,7 @@
             text-align: center;
             font-size: 18px;
         }
+
         button {
             width: 100%;
             padding: 10px;
@@ -49,31 +67,58 @@
             margin-top: 10px;
         }
         button:hover { background-color: #2ea043; }
-        .icon { font-size: 50px; margin-bottom: 20px; }
+
+        .status {
+            color: #2ea043;
+            font-size: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #30363d;
+            padding-top: 10px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-box">
-        <div class="icon">🕵️‍♂️</div>
+    <div id="tela-login">
+        <div style="font-size: 50px;">🔒</div>
         <h2>ÁREA RESTRITA</h2>
-        <p>Digite a senha secreta</p>
+        <p>Identifique-se</p>
+        <input type="password" id="senhaInput" placeholder="Digite a Senha">
+        <button onclick="verificarSenha()">ABRIR SISTEMA</button>
+        <p id="erro" style="color: red; display: none;">❌ SENHA INCORRETA!</p>
+    </div>
+
+    <div id="tela-secreta">
+        <div style="font-size: 50px;">🔓</div>
+        <h1 style="color: #238636;">BEM-VINDO, RAILANTECH</h1>
+        <p>Acesso de Administrador: <strong>LIBERADO</strong></p>
         
-        <input type="password" id="senhaSecreta" placeholder="Senha (Dica: 1234)">
-        
-        <button onclick="verificar()">ENTRAR</button>
+        <br>
+        <div style="text-align: left; background: #161b22; padding: 15px; border-radius: 10px;">
+            <p>🟢 <strong>Servidor:</strong> ONLINE</p>
+            <p>🟢 <strong>Segurança:</strong> ATIVADA</p>
+            <p>🟢 <strong>Usuário:</strong> Chefe Railan</p>
+        </div>
+
+        <div class="status">
+            Sistema Operando 100%
+        </div>
+
+        <button onclick="location.reload()" style="background-color: #da3633; margin-top: 20px;">SAIR (LOGOUT)</button>
     </div>
 
     <script>
-        // O CÉREBRO DO SISTEMA
-        function verificar() {
-            var senhaDigitada = document.getElementById('senhaSecreta').value;
+        function verificarSenha() {
+            var senha = document.getElementById('senhaInput').value;
             
-            // AQUI A SENHA É DEFINIDA COMO "1234"
-            if (senhaDigitada === '1234') {
-                alert('✅ ACESSO PERMITIDO!\n\nBem-vindo, Chefe Railan.');
+            // A SENHA AINDA É 1234
+            if (senha === '1234') {
+                // Mágica: Esconde o Login e Mostra a Sala Secreta
+                document.getElementById('tela-login').style.display = 'none';
+                document.getElementById('tela-secreta').style.display = 'block';
             } else {
-                alert('❌ ACESSO NEGADO!\n\nSenha incorreta. Saia daqui!');
+                // Mostra erro em vermelho
+                document.getElementById('erro').style.display = 'block';
             }
         }
     </script>
