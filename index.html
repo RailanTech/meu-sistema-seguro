@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Seguro | RailanTech</title>
+    <title>Sistema Seguro VIP</title>
     <style>
         body {
             background-color: #0d1117;
@@ -33,6 +33,8 @@
             border: 1px solid #30363d;
             background-color: #0d1117;
             color: white;
+            text-align: center;
+            font-size: 18px;
         }
         button {
             width: 100%;
@@ -44,6 +46,7 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
+            margin-top: 10px;
         }
         button:hover { background-color: #2ea043; }
         .icon { font-size: 50px; margin-bottom: 20px; }
@@ -52,15 +55,28 @@
 <body>
 
     <div class="login-box">
-        <div class="icon">🔒</div>
-        <h2>Acesso Restrito</h2>
-        <p>Sistema RailanTech</p>
+        <div class="icon">🕵️‍♂️</div>
+        <h2>ÁREA RESTRITA</h2>
+        <p>Digite a senha secreta</p>
         
-        <input type="email" placeholder="Usuário">
-        <input type="password" placeholder="Senha">
+        <input type="password" id="senhaSecreta" placeholder="Senha (Dica: 1234)">
         
-        <button onclick="alert('✅ ACESSO AUTORIZADO!\n\nBem-vindo ao Sistema, RailanTech.\nConexão Segura Ativada.')">ENTRAR</button>
+        <button onclick="verificar()">ENTRAR</button>
     </div>
+
+    <script>
+        // O CÉREBRO DO SISTEMA
+        function verificar() {
+            var senhaDigitada = document.getElementById('senhaSecreta').value;
+            
+            // AQUI A SENHA É DEFINIDA COMO "1234"
+            if (senhaDigitada === '1234') {
+                alert('✅ ACESSO PERMITIDO!\n\nBem-vindo, Chefe Railan.');
+            } else {
+                alert('❌ ACESSO NEGADO!\n\nSenha incorreta. Saia daqui!');
+            }
+        }
+    </script>
 
 </body>
 </html>
