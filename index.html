@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema RailanTech V3</title>
+    <title>Portfólio RailanTech</title>
     <style>
         body {
             background-color: #0d1117;
             color: white;
-            font-family: 'Courier New', monospace; /* Fonte Hacker */
+            font-family: 'Courier New', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        /* TELA DE LOGIN (A Porta) */
+        /* TELA DE LOGIN */
         #tela-login {
             background-color: #161b22;
             padding: 40px;
@@ -27,17 +27,17 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* TELA SECRETA (A Sala) - Começa invisível */
+        /* TELA DO PORTFÓLIO (A Sala Secreta) */
         #tela-secreta {
-            display: none; /* ESCONDIDO */
+            display: none;
             background-color: #0d1117;
             text-align: center;
             width: 85%;
-            max-width: 600px;
+            max-width: 500px;
             border: 2px solid #238636;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 0 25px #238636; /* Brilho verde forte */
+            box-shadow: 0 0 30px #238636;
         }
 
         h2 { color: #238636; letter-spacing: 2px; }
@@ -52,10 +52,10 @@
             color: white;
             text-align: center;
             font-size: 18px;
-            letter-spacing: 2px;
         }
 
-        button {
+        /* BOTÃO PRINCIPAL (LOGIN) */
+        .btn-login {
             width: 100%;
             padding: 12px;
             background-color: #238636;
@@ -65,73 +65,77 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 16px;
-            margin-top: 10px;
+        }
+        .btn-login:hover { background-color: #2ea043; }
+
+        /* BOTÕES DE CONTATO (NOVOS) */
+        .btn-link {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            text-decoration: none; /* Tira o sublinhado */
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
             transition: 0.3s;
         }
-        button:hover { background-color: #2ea043; transform: scale(1.05); }
 
-        .info-box {
-            text-align: left; 
-            background: #161b22; 
-            padding: 20px; 
-            border-radius: 10px;
-            margin-top: 20px;
-            border: 1px solid #30363d;
-        }
+        /* Cores dos Botões */
+        .zap { background-color: #25D366; } /* Verde WhatsApp */
+        .zap:hover { background-color: #128C7E; transform: scale(1.05); }
 
-        .status-ok { color: #2ea043; font-weight: bold; }
-        .erro-msg { color: #ff5555; display: none; margin-top: 10px; font-weight: bold; }
+        .git { background-color: #f0f6fc; color: #0d1117; } /* Branco GitHub */
+        .git:hover { background-color: #c9d1d9; transform: scale(1.05); }
+
+        .sair { background-color: #da3633; margin-top: 20px; } /* Vermelho Sair */
+        
+        .erro-msg { color: #ff5555; display: none; margin-top: 10px; }
 
     </style>
 </head>
 <body>
 
     <div id="tela-login">
-        <div style="font-size: 60px;">🔐</div>
-        <h2>ACESSO RESTRITO</h2>
-        <p style="color: #8b949e;">Identifique-se, Administrador.</p>
+        <div style="font-size: 60px;">💻</div>
+        <h2>RAILAN TECH</h2>
+        <p style="color: #8b949e;">Acesso ao Portfólio</p>
         
-        <input type="password" id="senhaInput" placeholder="Senha Mestra">
+        <input type="password" id="senhaInput" placeholder="Senha">
         
-        <button onclick="verificarSenha()">ABRIR SISTEMA</button>
-        
-        <p id="erro" class="erro-msg">⛔ SENHA INCORRETA!</p>
+        <button class="btn-login" onclick="verificarSenha()">ENTRAR</button>
+        <p id="erro" class="erro-msg">⛔ SENHA ERRADA!</p>
     </div>
 
     <div id="tela-secreta">
-        <div style="font-size: 60px;">🔓</div>
-        <h1 style="color: #238636; text-shadow: 0 0 10px #238636;">BEM-VINDO, RAILANTECH</h1>
-        <p>Acesso de Administrador: <strong style="color:white; background:green; padding: 2px 5px;">CONCEDIDO</strong></p>
+        <h1 style="color: #238636;">OLÁ, SOU O RAILAN</h1>
+        <p>Bem-vindo ao meu sistema.</p>
+        <hr style="border-color: #30363d;">
         
-        <div class="info-box">
-            <p>🟢 <strong>Servidor:</strong> ONLINE (Bahia/BR)</p>
-            <p>🟢 <strong>Firewall:</strong> ATIVO</p>
-            <p>🟢 <strong>Usuário:</strong> Chefe Railan</p>
-            <p>📅 <strong>Status:</strong> Sistema Operacional 100%</p>
-        </div>
+        <p><strong>Escolha uma opção:</strong></p>
 
-        <br>
-        <button onclick="location.reload()" style="background-color: #da3633;">🔒 BLOQUEAR TELA (SAIR)</button>
+        <a href="https://wa.me/5571986333236?text=Olá+Railan+vi+seu+site" target="_blank" class="btn-link zap">
+            📱 CHAMAR NO WHATSAPP
+        </a>
+
+        <a href="https://github.com/railantech" target="_blank" class="btn-link git">
+            🐱 MEU GITHUB (CÓDIGOS)
+        </a>
+
+        <button onclick="location.reload()" class="btn-login sair">🔒 SAIR DO SISTEMA</button>
     </div>
 
     <script>
         function verificarSenha() {
             var senhaDigitada = document.getElementById('senhaInput').value;
             
-            // AQUI ESTÁ A SUA NOVA SENHA SEGURA
-            // ATENÇÃO: Tem que digitar EXATAMENTE assim:
+            // SUA SENHA SEGURA
             if (senhaDigitada === '@Railan@Jose@Rita@') {
-                
-                // Se a senha estiver certa:
-                document.getElementById('tela-login').style.display = 'none'; // Some o login
-                document.getElementById('tela-secreta').style.display = 'block'; // Aparece a sala
-                
+                document.getElementById('tela-login').style.display = 'none';
+                document.getElementById('tela-secreta').style.display = 'block';
             } else {
-                
-                // Se a senha estiver errada:
-                document.getElementById('erro').style.display = 'block'; // Mostra erro vermelho
-                document.getElementById('senhaInput').value = ''; // Limpa o campo
-                document.getElementById('senhaInput').focus(); // Coloca o cursor de volta
+                document.getElementById('erro').style.display = 'block';
             }
         }
     </script>
