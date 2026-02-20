@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio RailanTech</title>
+    <title>Calculadora RailanTech</title>
     <style>
         body {
             background-color: #0d1117;
@@ -27,116 +27,157 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* TELA DO PORTFÓLIO (A Sala Secreta) */
-        #tela-secreta {
+        /* TELA DA CALCULADORA (A Sala Secreta) */
+        #tela-calculadora {
             display: none;
             background-color: #0d1117;
             text-align: center;
-            width: 85%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 450px;
             border: 2px solid #238636;
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 0 30px #238636;
         }
 
-        h2 { color: #238636; letter-spacing: 2px; }
+        h2 { color: #238636; letter-spacing: 2px; margin-bottom: 5px;}
+        h3 { color: #e6edf3; margin-top: 0; }
         
         input {
             width: 90%;
-            padding: 12px;
+            padding: 15px;
             margin: 15px 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border: 1px solid #30363d;
-            background-color: #0d1117;
+            background-color: #161b22;
             color: white;
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        /* BOTÃO PRINCIPAL (LOGIN) */
-        .btn-login {
+        /* BOTÃO VERDE (Ação) */
+        .btn-verde {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background-color: #238636;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
-        }
-        .btn-login:hover { background-color: #2ea043; }
-
-        /* BOTÕES DE CONTATO (NOVOS) */
-        .btn-link {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            text-decoration: none; /* Tira o sublinhado */
-            color: white;
-            border-radius: 8px;
-            font-weight: bold;
             font-size: 18px;
-            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-verde:hover { background-color: #2ea043; transform: scale(1.02); }
+
+        /* ÁREA DO RESULTADO */
+        #resultado {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #161b22;
+            border-radius: 10px;
+            border: 1px solid #30363d;
         }
 
-        /* Cores dos Botões */
-        .zap { background-color: #25D366; } /* Verde WhatsApp */
-        .zap:hover { background-color: #128C7E; transform: scale(1.05); }
+        .texto-grande { font-size: 24px; color: #ff5555; font-weight: bold; }
+        .aviso { font-size: 12px; color: #8b949e; margin-top: 5px; }
 
-        .git { background-color: #f0f6fc; color: #0d1117; } /* Branco GitHub */
-        .git:hover { background-color: #c9d1d9; transform: scale(1.05); }
-
-        .sair { background-color: #da3633; margin-top: 20px; } /* Vermelho Sair */
-        
-        .erro-msg { color: #ff5555; display: none; margin-top: 10px; }
+        /* Botões pequenos de contato */
+        .btn-pequeno {
+            margin-top: 20px;
+            background: none;
+            border: 1px solid #30363d;
+            color: #8b949e;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
 
     </style>
 </head>
 <body>
 
     <div id="tela-login">
-        <div style="font-size: 60px;">💻</div>
+        <div style="font-size: 60px;">🔐</div>
         <h2>RAILAN TECH</h2>
-        <p style="color: #8b949e;">Acesso ao Portfólio</p>
+        <p style="color: #8b949e;">Acesso Restrito</p>
         
         <input type="password" id="senhaInput" placeholder="Senha">
         
-        <button class="btn-login" onclick="verificarSenha()">ENTRAR</button>
-        <p id="erro" class="erro-msg">⛔ SENHA ERRADA!</p>
+        <button class="btn-verde" onclick="verificarSenha()">ENTRAR</button>
+        <p id="erro" style="color: #ff5555; display: none;">⛔ SENHA ERRADA!</p>
     </div>
 
-    <div id="tela-secreta">
-        <h1 style="color: #238636;">OLÁ, SOU O RAILAN</h1>
-        <p>Bem-vindo ao meu sistema.</p>
+    <div id="tela-calculadora">
+        <div style="font-size: 50px;">🧮</div>
+        <h2>CALCULADORA REAL</h2>
+        <p style="color: #8b949e;">Shopee / AliExpress / Shein</p>
         <hr style="border-color: #30363d;">
-        
-        <p><strong>Escolha uma opção:</strong></p>
 
-        <a href="https://wa.me/5571986333236?text=Olá+Railan+vi+seu+site" target="_blank" class="btn-link zap">
-            📱 CHAMAR NO WHATSAPP
-        </a>
+        <p>Quanto custa o produto (em Reais)?</p>
+        <input type="number" id="valorProduto" placeholder="R$ 0,00">
 
-        <a href="https://github.com/railantech" target="_blank" class="btn-link git">
-            🐱 MEU GITHUB (CÓDIGOS)
-        </a>
+        <button class="btn-verde" onclick="calcularTaxa()">CALCULAR AGORA</button>
 
-        <button onclick="location.reload()" class="btn-login sair">🔒 SAIR DO SISTEMA</button>
+        <div id="resultado">
+            <p>O produto custa: <strong id="mostra-valor">R$ 0,00</strong></p>
+            <p>Composto (+Frete+Taxa): <strong id="mostra-taxa" style="color:yellow;">R$ 0,00</strong></p>
+            <hr style="border-color: #30363d;">
+            <p>VOCÊ VAI PAGAR NO TOTAL:</p>
+            <div id="total-final" class="texto-grande">R$ 0,00</div>
+            <p class="aviso">*Estimativa com ICMS e Imposto Federal.</p>
+        </div>
+
+        <button onclick="location.reload()" class="btn-pequeno">🔒 SAIR</button>
     </div>
 
     <script>
         function verificarSenha() {
-            var senhaDigitada = document.getElementById('senhaInput').value;
-            
+            var senha = document.getElementById('senhaInput').value;
             // SUA SENHA SEGURA
-            if (senhaDigitada === '@Railan@Jose@Rita@') {
+            if (senha === '@Railan@Jose@Rita@') {
                 document.getElementById('tela-login').style.display = 'none';
-                document.getElementById('tela-secreta').style.display = 'block';
+                document.getElementById('tela-calculadora').style.display = 'block';
             } else {
                 document.getElementById('erro').style.display = 'block';
             }
+        }
+
+        function calcularTaxa() {
+            // PEGA O VALOR QUE A PESSOA DIGITOU
+            var valor = parseFloat(document.getElementById('valorProduto').value);
+            
+            if (isNaN(valor)) {
+                alert("Digite um número válido!");
+                return;
+            }
+
+            var imposto;
+            var total;
+
+            // REGRA DO GOVERNO (SIMPLIFICADA PARA SEGURANÇA)
+            // Se for menos de R$ 250 (aprox $50 dólares), cobra +/- 45% (20% + ICMS)
+            // Se for mais de R$ 250, cobra +/- 92% (60% + ICMS)
+            
+            if (valor < 250) {
+                // Taxa Pequena (45% aprox)
+                total = valor * 1.45;
+                imposto = total - valor;
+            } else {
+                // Taxa Gigante (92% aprox)
+                total = valor * 1.92;
+                imposto = total - valor;
+            }
+
+            // MOSTRA NA TELA
+            document.getElementById('mostra-valor').innerText = 'R$ ' + valor.toFixed(2);
+            document.getElementById('mostra-taxa').innerText = '+ R$ ' + imposto.toFixed(2);
+            document.getElementById('total-final').innerText = 'R$ ' + total.toFixed(2);
+            
+            document.getElementById('resultado').style.display = 'block';
         }
     </script>
 
