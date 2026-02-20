@@ -16,7 +16,6 @@
             margin: 0;
         }
 
-        /* TELA DE LOGIN */
         #tela-login {
             background-color: #161b22;
             padding: 40px;
@@ -27,7 +26,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
-        /* TELA DA CALCULADORA (A Sala Secreta) */
         #tela-calculadora {
             display: none;
             background-color: #0d1117;
@@ -41,7 +39,6 @@
         }
 
         h2 { color: #238636; letter-spacing: 2px; margin-bottom: 5px;}
-        h3 { color: #e6edf3; margin-top: 0; }
         
         input {
             width: 90%;
@@ -56,7 +53,6 @@
             font-weight: bold;
         }
 
-        /* BOTÃO VERDE (Ação) */
         .btn-verde {
             width: 100%;
             padding: 15px;
@@ -71,7 +67,6 @@
         }
         .btn-verde:hover { background-color: #2ea043; transform: scale(1.02); }
 
-        /* ÁREA DO RESULTADO */
         #resultado {
             display: none;
             margin-top: 20px;
@@ -84,7 +79,25 @@
         .texto-grande { font-size: 24px; color: #ff5555; font-weight: bold; }
         .aviso { font-size: 12px; color: #8b949e; margin-top: 5px; }
 
-        /* Botões pequenos de contato */
+        /* NOVO BOTÃO DE COMPRA */
+        .btn-comprar {
+            display: none; /* Começa escondido */
+            width: 100%;
+            padding: 15px;
+            background-color: #1f6feb; /* Azul Oficial */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            box-shadow: 0 0 15px #1f6feb;
+            transition: 0.3s;
+        }
+        .btn-comprar:hover { background-color: #388bfd; }
+
         .btn-pequeno {
             margin-top: 20px;
             background: none;
@@ -103,10 +116,7 @@
     <div id="tela-login">
         <div style="font-size: 60px;">🔐</div>
         <h2>RAILAN TECH</h2>
-        <p style="color: #8b949e;">Acesso Restrito</p>
-        
         <input type="password" id="senhaInput" placeholder="Senha">
-        
         <button class="btn-verde" onclick="verificarSenha()">ENTRAR</button>
         <p id="erro" style="color: #ff5555; display: none;">⛔ SENHA ERRADA!</p>
     </div>
@@ -114,7 +124,7 @@
     <div id="tela-calculadora">
         <div style="font-size: 50px;">🧮</div>
         <h2>CALCULADORA REAL</h2>
-        <p style="color: #8b949e;">Shopee / AliExpress / Shein</p>
+        <p style="color: #8b949e;">AliExpress / Shopee</p>
         <hr style="border-color: #30363d;">
 
         <p>Quanto custa o produto (em Reais)?</p>
@@ -123,21 +133,24 @@
         <button class="btn-verde" onclick="calcularTaxa()">CALCULAR AGORA</button>
 
         <div id="resultado">
-            <p>O produto custa: <strong id="mostra-valor">R$ 0,00</strong></p>
-            <p>Composto (+Frete+Taxa): <strong id="mostra-taxa" style="color:yellow;">R$ 0,00</strong></p>
+            <p>Produto: <strong id="mostra-valor">R$ 0,00</strong></p>
+            <p>Impostos: <strong id="mostra-taxa" style="color:yellow;">R$ 0,00</strong></p>
             <hr style="border-color: #30363d;">
-            <p>VOCÊ VAI PAGAR NO TOTAL:</p>
+            <p>TOTAL A PAGAR:</p>
             <div id="total-final" class="texto-grande">R$ 0,00</div>
-            <p class="aviso">*Estimativa com ICMS e Imposto Federal.</p>
         </div>
 
+        <a href="https://pt.aliexpress.com/" target="_blank" id="botao-comprar" class="btn-comprar">
+            🛒 COMPRAR NO ALIEXPRESS (OFICIAL)
+        </a>
+
+        <br>
         <button onclick="location.reload()" class="btn-pequeno">🔒 SAIR</button>
     </div>
 
     <script>
         function verificarSenha() {
             var senha = document.getElementById('senhaInput').value;
-            // SUA SENHA SEGURA
             if (senha === '@Railan@Jose@Rita@') {
                 document.getElementById('tela-login').style.display = 'none';
                 document.getElementById('tela-calculadora').style.display = 'block';
@@ -147,37 +160,28 @@
         }
 
         function calcularTaxa() {
-            // PEGA O VALOR QUE A PESSOA DIGITOU
             var valor = parseFloat(document.getElementById('valorProduto').value);
             
             if (isNaN(valor)) {
-                alert("Digite um número válido!");
+                alert("Digite um número!");
                 return;
             }
 
-            var imposto;
-            var total;
-
-            // REGRA DO GOVERNO (SIMPLIFICADA PARA SEGURANÇA)
-            // Se for menos de R$ 250 (aprox $50 dólares), cobra +/- 45% (20% + ICMS)
-            // Se for mais de R$ 250, cobra +/- 92% (60% + ICMS)
-            
+            var imposto, total;
             if (valor < 250) {
-                // Taxa Pequena (45% aprox)
                 total = valor * 1.45;
-                imposto = total - valor;
             } else {
-                // Taxa Gigante (92% aprox)
                 total = valor * 1.92;
-                imposto = total - valor;
             }
+            imposto = total - valor;
 
-            // MOSTRA NA TELA
             document.getElementById('mostra-valor').innerText = 'R$ ' + valor.toFixed(2);
             document.getElementById('mostra-taxa').innerText = '+ R$ ' + imposto.toFixed(2);
             document.getElementById('total-final').innerText = 'R$ ' + total.toFixed(2);
             
+            // FAZ APARECER O RESULTADO E O BOTÃO DE COMPRA
             document.getElementById('resultado').style.display = 'block';
+            document.getElementById('botao-comprar').style.display = 'inline-block';
         }
     </script>
 
